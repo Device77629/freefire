@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Прокачка аккаунтов Free Fire</title>
+  <meta name="description" content="Прокачка аккаунтов Free Fire. Связь через Telegram или WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0b0f17; --bg2:#121a29; --acc:#ffb703; --acc2:#00e5ff; --soft:#ffffff10;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#e8eef7; background: radial-gradient(1200px 600px at 70% -10%, #1b2b45 0%, transparent 60%),
+                 radial-gradient(900px 500px at -10% 20%, #1a2235 0%, transparent 60%),
+                 linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    /* Animated particles */
+    .particles{position:fixed; inset:0; pointer-events:none; z-index:0}
+    .p{position:absolute; width:2px; height:2px; background:linear-gradient(45deg, var(--acc), var(--acc2)); filter:blur(.3px); opacity:.7; border-radius:2px;}
+    header{
+      position:sticky; top:0; z-index:5; backdrop-filter: blur(8px); background: #0b0f17a6;
+      border-bottom:1px solid var(--soft);
+    }
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 16px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px}
+    .brand .badge{width:28px; height:28px; background:linear-gradient(135deg, var(--acc), var(--acc2)); border-radius:8px; box-shadow:0 0 18px #00e5ff40}
+    .nav a{color:#dfe7f6; text-decoration:none; margin-left:16px; font-weight:600}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:12px 18px; border-radius:14px; border:1px solid var(--soft); background:#0f1420b8; gap:10px; font-weight:700; letter-spacing:.3px; cursor:pointer; transition:.2s transform, .2s box-shadow, .2s background}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 8px 26px #0008, inset 0 0 0 999px #ffffff05}
+    .btn.accent{background:linear-gradient(135deg, #18253b, #0e1727); border:1px solid #1f2b43}
+    .btn.accent .dot{width:7px; height:7px; background:linear-gradient(135deg, var(--acc), var(--acc2)); border-radius:50%}
+
+    .hero{position:relative; z-index:1; max-width:1100px; margin:28px auto; padding:24px 16px 10px}
+    .hero-card{position:relative; border:1px solid var(--soft); border-radius:22px; overflow:hidden; padding:28px; background:linear-gradient(180deg, #0e1626cc, #0b101acc)}
+    .hero-card::before{content:""; position:absolute; inset:-2px; background:conic-gradient(from 120deg, #00e5ff20, transparent 20%, #ffb70320 40%, transparent 60%); filter:blur(18px); z-index:-1}
+    .hero-top{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
+    .title{font-size:clamp(26px, 4vw, 42px); font-weight:800; line-height:1.05}
+    .subtitle{opacity:.8; margin-top:6px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+
+    .tiers{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:14px; margin-top:18px}
+    .card{border:1px solid var(--soft); border-radius:18px; background:linear-gradient(180deg, #0c1322, #0a0f1a); padding:18px}
+    .card h3{margin:0 0 6px 0; font-size:20px}
+    .tag{font-size:12px; opacity:.7}
+
+    .split{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; margin-top:16px}
+    .panel{border:1px solid var(--soft); border-radius:18px; padding:18px; background:linear-gradient(180deg, #0b111e, #0a0f1a)}
+
+    footer{max-width:1100px; margin:16px auto 40px; padding:0 16px; opacity:.7}
+    .links{display:flex; gap:8px; flex-wrap:wrap}
+
+    /* Minimal reviews-only view */
+    .only-reviews header, .only-reviews .hero, .only-reviews footer{display:none}
+    .only-reviews .reviews-wrap{max-width:900px; margin:26px auto; padding:0 14px}
+    .only-reviews .reviews-title{font-size:28px; font-weight:800; margin-bottom:12px}
+    .review{border:1px solid var(--soft); border-radius:16px; padding:14px; background:#0c1220; margin-bottom:12px}
+    .review b{display:block; margin-bottom:6px}
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true" id="particles"></div>
+
+  <header>
+    <nav class="nav">
+      <div class="brand"><span class="badge"></span> Прокачка аккаунтов Free Fire</div>
+      <div>
+        <a href="#" id="openReviews">Отзывы</a>
+        <a href="#menu" id="openMenu">Меню</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="hero" id="main">
+    <section class="hero-card">
+      <div class="hero-top">
+        <div>
+          <div class="title">Free Fire — прокачка</div>
+          <div class="subtitle">Если хочешь прокачку — пиши в Telegram или WhatsApp.</div>
+        </div>
+        <div class="cta">
+          <a class="btn accent" id="tgBtn" target="_blank" rel="noopener">
+            <span class="dot"></span> Telegram
+          </a>
+          <a class="btn" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="tiers">
+        <div class="card">
+          <h3>Lite</h3>
+          <div class="tag">Быстро и просто</div>
+        </div>
+        <div class="card">
+          <h3>Pro</h3>
+          <div class="tag">Оптимально</div>
+        </div>
+        <div class="card">
+          <h3>Elite</h3>
+          <div class="tag">Максимум</div>
+        </div>
+      </div>
+
+      <div class="split" id="menu">
+        <div class="panel">
+          <h3 style="margin:0 0 10px 0">Контакты</h3>
+          <div class="links">
+            <a class="btn accent" id="tgBtn2" target="_blank" rel="noopener"><span class="dot"></span> Telegram</a>
+            <a class="btn" id="waBtn2" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h3 style="margin:0 0 10px 0">Инфо</h3>
+          <div style="opacity:.8">Без паролей и логинов. Только связь через Telegram/WhatsApp.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Free Fire Boost. Не является официальным сайтом Garena.</div>
+  </footer>
+
+  <script>
+    // ====== Config (ваши контакты) ======
+    const TELEGRAM_USERNAME = 'wilighto';
+    const WHATSAPP_NUMBER = '996559091313'; // без +
+    const PRE_TEXT = encodeURIComponent('Привет! Хочу прокачку аккаунта Free Fire.');
+
+    // Ссылки с автотекстом
+    const tgLink = `https://t.me/${TELEGRAM_USERNAME}?text=${PRE_TEXT}`;
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${PRE_TEXT}`;
+
+    function bindContactButtons(){
+      ['tgBtn','tgBtn2'].forEach(id=>{ const el = document.getElementById(id); if(el) el.href = tgLink; });
+      ['waBtn','waBtn2'].forEach(id=>{ const el = document.getElementById(id); if(el) el.href = waLink; });
+    }
+
+    // Открытие отзывов в новом окне (минимальный режим)
+    document.getElementById('openReviews').addEventListener('click', (e)=>{
+      e.preventDefault();
+      window.open(location.pathname + 'reviews.html', '_blank');
+    });
+
+    // Переход к меню
+    document.getElementById('openMenu').addEventListener('click', (e)=>{
+      e.preventDefault();
+      document.getElementById('menu').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // Год
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Частицы (простая анимация)
+    function spawnParticles(){
+      const wrap = document.getElementById('particles');
+      const count = 70;
+      for(let i=0;i<count;i++){
+        const s = document.createElement('span');
+        s.className = 'p';
+        const x = Math.random()*100; const y = Math.random()*100;
+        const d = 8 + Math.random()*16;
+        s.style.left = x+'%'; s.style.top = y+'%';
+        s.style.animation = `float ${3+d}s ease-in-out ${Math.random()*3}s infinite alternate`;
+        wrap.appendChild(s);
+      }
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes float{from{transform:translateY(0)}to{transform:translateY(-20px)}}`;
+    document.head.appendChild(style);
+
+    // Init
+    bindContactButtons();
+    spawnParticles();
+  </script>
+</body>
+</html>
+
+<!-- ============ ОТДЕЛЬНАЯ СТРАНИЦА ОТЗЫВОВ ============ -->
+<!-- reviews.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отзывы — Free Fire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Poppins, sans-serif;background:#0b0f17;color:#e8eef7;padding:20px}
+    h1{font-size:28px;font-weight:800;margin-bottom:18px}
+    .review{border:1px solid #ffffff20;border-radius:12px;padding:14px;background:#0c1220;margin-bottom:12px}
+    .review b{display:block;margin-bottom:6px}
+    .btn{display:inline-block;margin-top:20px;padding:12px 18px;background:#18253b;border-radius:10px;text-decoration:none;color:#fff;font-weight:600}
+    .btn:hover{background:#223456}
+  </style>
+</head>
+<body>
+  <h1>Отзывы</h1>
+  <div class="review"><b>Азамат</b> Всё чётко, сделали быстро.</div>
+  <div class="review"><b>Нуриса</b> Красиво и аккуратно, спасибо.</div>
+  <div class="review"><b>Ильяс</b> Понравилось, буду советовать друзьям.</div>
+  <div class="review"><b>Диас</b> Связался в ТГ, всё без лишних слов.</div>
+  <div class="review"><b>Айша</b> Отличная работа, как и хотела.</div>
+  <div class="review"><b>Самира</b> Ответ быстро, сделали как надо.</div>
+
+  <a href="index.html" class="btn">⬅ Назад на главную</a>
+</body>
+</html>
